@@ -20,24 +20,28 @@ class SinglyLinkedList:
         Takes O(n) time.
         """
         if self.head == None:
-            newNode = ListNode(self,data)
+            newNode = ListNode(data)
             self.head = newNode
         else:
-            self.last = self.head
-            while(self.last != None):
-                self.last = self.head.next
-            self.next = ListNode(self,data)
+            last = self.head
+            while last.next != None:
+                last = last.next
+            last.next = ListNode(data)
+        print(f"Appended {data} to the list.")
+
     def find(self, key):
         """
         Search for the first element with `data` matching
         `key`. Return the element or `None` if not found.
         Takes O(n) time.
         """
-        self.last = self.head
-        while(self.last != None):
-            if self.data == key :
+        last = self.head
+        while(last != None):
+            if last.data == key :
+                print(f"Found {key} in the list.")
                 return self
-            self.last = self.last.next
+            last = last.next
+        print(f"{key} not found in the list.")
         return None
     def remove(self, key):
         """
@@ -53,8 +57,17 @@ class SinglyLinkedList:
                     previous.next = current.next
                 else:
                     self.head = current.next
+                print(f"Removed {key} from the list.")
                 return current
             previous = current
             current = current.next
+        print(f"{key} not found in the list.")
         return None
 
+alinkedlist = SinglyLinkedList()
+alinkedlist.append(8)
+alinkedlist.append(7)
+alinkedlist.append(6)
+alinkedlist.append(1)
+alinkedlist.find(6)
+alinkedlist.remove(1)
